@@ -1,4 +1,4 @@
-## Annotated By Zhang Siyun: start
+
 from utils import Direction, ascii_art ## Import Direction class from utils.py 
 from game_main import Game_main ## Import game_main from Game_main.py
 import pickle ## Import pickle to save file for each status
@@ -6,9 +6,7 @@ import os     ## Import os to operate system-dependent functionality, including 
 import time   ## Import time module to control the speed of transition animation
 import sys    ## Import sys to access system-specific parameters and functions
 from inputer import Inputer ## Import Inputer from inputer.py
-## Annotated By Zhang Siyun: end
 
-## From Line 11: Annotations made by Zhangsiyun
 class Map_manage:
     ins : 'Map_manage' = None # Singleton instance of Map_manage
     def __init__(self):
@@ -22,8 +20,8 @@ class Map_manage:
         self.map = None # 3D map structure 
         self.game_objects = None # 3D structure for game objects
         self.level_text = ""
-    #shi boyuan
-    #Annotated by Zhangsiyun:
+    
+    
     def update_meta(self):
         import game_object 
         Game_main.ins.game_objects =[]
@@ -39,7 +37,7 @@ class Map_manage:
                             Map_manage.ins.player = obj
                         else:
                             Game_main.ins.Add_game_object(self.game_objects[layer][row][col])
-    #shi boyuan                    
+                        
     def trim_map(self):
         u_r,b_r = 0,len(self.map[0]) -1
         l_c,r_c = 0,len(self.map[0][0]) -1
@@ -54,7 +52,8 @@ class Map_manage:
         self.map = [[self.map[self.layer][i][l_c:r_c+1] for i in range(u_r,b_r+1)]]
         self.game_objects = [[self.game_objects[self.layer][i][l_c:r_c+1] for i in range(u_r,b_r+1)]]
 
-    #Chi Yin
+    
+
     def Read_map(self, filename='map_0.pkl'):
         
         filepath = os.path.join('Game_data', filename)
@@ -76,7 +75,8 @@ class Map_manage:
                 print(f'Map loading error:{e}')
         else:
             print(f'Map file {filepath} not found') #Prevent error of map doesn't exists
-    #Chi Yin
+    
+
     def Save_map(self, filename ='map_0.pkl'):
         filepath = os.path.join('Game_data', filename)
         os.makedirs('Game_data', exist_ok = True)
@@ -95,7 +95,8 @@ class Map_manage:
     
     def Move_game_object(self,dir,dis = 1):
         pass
-    #start shi boyuan
+    
+
     def Add_ground(self,pos):
         # self.map[layer][x][y] = "#"
         self.map[pos[0]][pos[1]][pos[2]] = "#"
@@ -118,97 +119,4 @@ class Map_manage:
         self.game_objects[pos2[0]][pos2[1]][pos2[2]] = self.game_objects[pos1[0]][pos1[1]][pos1[2]]
         self.game_objects[pos2[0]][pos2[1]][pos2[2]].pos = pos2
         self.game_objects[pos1[0]][pos1[1]][pos1[2]] = None
-    # end
-
-    # ## Zhang Siyun
-    # ## Using function of clearing the screen
-    # def clear_screen(self):
-    #     print("\033[H\033[J", end="")
-
-    # ## Designing game levels and the interface of game menu
-    # def LevelOpt(self):
-    #     self.is_selecting = True
-    #     levelLst = []
-    #     test_list= ['123','1','345234','678'] 
-    #     for test_list in test_list:
-    #         forelen = (17-len(test_list))//2
-    #         lattlen = 17-(17-len(test_list))//2-len(test_list)
-    #         ## Designing game level options: start
-    #         leveloption1 = "┎-----------------┐  "
-    #         leveloption2 = "|"+forelen*" "+test_list+lattlen*" "+"|  "
-    #         leveloption3 = "└-----------------┘  "
-    #         ## Designing game level options: end
-    #         levelLst.append([leveloption1,leveloption2,leveloption3])
-    #         ## Using a list to store all the game levels
-    #     return levelLst
-
-    # ## Printing levels stored from the list
-    # def GameLevel(self,current_level):
-    #     levelLst = self.LevelOpt()
-    #     self.clear_screen()
-    #     for i, level in enumerate(levelLst):
-    #         if i==current_level:
-    #             len1 = len(level[1])
-    #             lev1 = level[1][0:len1-1]+"<"
-    #             print(f"{level[0]}")
-    #             print(f"{lev1}")
-    #             print(f"{level[2]}")
-    #             ## Use a symbol "<" to show that you are choosing the current level
-    #         else:
-    #             print(f"{level[0]}")
-    #             print(f"{level[1]}")
-    #             print(f"{level[2]}")
-    #             ## The other levels are not selected, so no "<" symbols outputted.
-    #     sys.stdout.flush()
-
-    # ## Printing the interface of the game menu
-    # def GameMenu(self):
-    #     self.clear_screen()
-    #     self.is_selecting = True
-    #     print("Welcome to the Chess Game!")
-    #     #list all file under game data
-    #     #read all file and store in list
-    #     while True:
-    #         inp = Inputer.ins.Get_input()
-    #         #render a image for player to select
-    #         #After select, load data in where they should be 
-    #         #break out to loop
-
-    #         self.Read_map()
-    #         self.selct_image = None
-    #     self.is_selecting = False
-        
-    # ## Using the up, down, left, right button to select a level.
-    # def MainInter(self):
-    #     levelLst=self.LevelOpt() #execute "LevelOpt" function to read in all the levels
-    #     current_level=0
-    #     render_result = []
-    #     test_list=['123','1','345234','678']
-    #     level_name = None
-    #     while True:
-    #         key = sys.stdin.read(1)
-    #         ## Python will read a key on the keyboard.
-    #         if key == '\x1b': # ESC
-    #             key += sys.stdin.read(2)
-    #             if key == '\x1b[A':   # Pressing the up button
-    #                 if current_level > 0:
-    #                     current_level -= 1
-    #             elif key == '\x1b[B': # Pressing the down button
-    #                 if current_level < len(levels) - 1:
-    #                     current_level += 1
-    #         elif key == 'q':          # If inputing 'q', then quit the game.
-    #             break
-    #         print_levels(levels, current_level)
-    #         for test_list in test_list:
-    #             rowlis = []
-    #             for str in test_list:
-    #                 rowlis.append(str)
-    #             render_result.append(rowlis)
-    #             ## Storing characters to the render result
-    #     return rowlis
-   
     
-    #MainInter(self)
-#end
-
-

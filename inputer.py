@@ -1,11 +1,10 @@
-#Jiaying Lin
-## Annotated by Zhang Siyun: Start
+
+
 import threading # import threading to implement multi-threading in programs, allowing for running
                  # multiple threads concurrently
 
 import time      # import time module to control the speed of transition animation
 import sys       # import sys to access system-specific parameters and functions
-## Annotated by Zhang Siyun: End
 
 class Inputer:
     ins : 'Inputer' = None
@@ -65,7 +64,7 @@ class _GetchWindows:
  
     def __call__(self):
         import msvcrt
-        return msvcrt.getch()
+        return msvcrt.getwch()
 if __name__ == '__main__':
     getch = _Getch()
     while True:

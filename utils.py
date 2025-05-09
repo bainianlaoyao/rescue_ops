@@ -1,4 +1,3 @@
-# start shi boyuan
 class Direction:
     up = (0,-1, 0)
     down = (0,1, 0)
@@ -450,4 +449,4 @@ if __name__ == "__main__":
                 print(''.join(line))
             print("\n")
         00
-#end
+

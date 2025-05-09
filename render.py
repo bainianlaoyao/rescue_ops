@@ -1,4 +1,4 @@
-#Annotated by Chi Yin
+
 from map_manage import Map_manage #Import Map_manage class from map_manage.py to access map data
 import os #Import os module to interact with operating system (e.g. getting terminal size)
 import shutil #used if player changes terminal size
@@ -6,7 +6,8 @@ from utils import Direction,ascii_art #Import Direction from utils for rendering
 import time #Import time module to control the speed of transition animation
 class Render:
     ins = None
-    # start shi boyuan 
+    
+ 
     def __init__(self):
         Render.ins = self #Set class instance to allow global access
         self.image : list = [] #Initialize a string variable to hold the render output
@@ -41,12 +42,12 @@ class Render:
         self.left_gap = max((self.width - len(format[0])) // 2, 0) #Calculate left padding
         self.bottom_gap = max(self.height - len(format) - self.top_gap, 0) #Calculate bottom padding
         self.right_gap = max(self.width - len(format[0]) - self.left_gap-2, 0) #Calculate right padding
-    #start Chi Yin
+
     def Update_terminal_size(self): #to prevent wrong calculation in top_gap or left_gap when player changes the terminal size
         size = shutil.get_terminal_size()
         self.width = size.columns
         self.height = size.lines - 1
-    #start Shi Boyuan and Chi Yin
+    
     def Render_top_padding(self):
         # if self.top_gap>0:
         #     self.image += str(self.cnt) #Add counter value at the top if there is a / are gap(s) 
@@ -111,7 +112,10 @@ class Render:
         self.print_image()
 
     def print_image(self):
-        os.system('clear')
+        if os.name == 'nt':  # Windows
+            os.system('cls')
+        else:  # Linux/Mac
+            os.system('clear')
         for line in self.image:
             print(''.join(line))
             # print()
@@ -255,9 +259,10 @@ class Render:
                 self.middle_result = target_image
                 time.sleep(transition_time)
         
-    #end
+    
         
-    # Shi boyuan
+    
+
     # argurment: (x, ababa)
     # return : (a:int, ababa)
     def ababa(self,x):

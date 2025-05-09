@@ -1,13 +1,11 @@
-## Annotated by Zhangsiyun
 from render import Render ## import Render class from render.py
 from map_manage import Map_manage ## import Map_manage class from map_manage.py
 from inputer import Inputer ## import Inputer from inputer.py
 from game_main import Game_main ## import Game_main from game_main.py
 import time ## import time module to control the speed of transition animation
 import sys ## import sys to access system-specific parameters and functions
-#shi boyuan
+
 from utils import Direction,ascii_art ## import Direction class from utils.py
-# shiboyuan
 if __name__ == "__main__": ## determine whether the current script is being run as 
                            ## the main program or if it is being imported as a 
                            ## module into another script

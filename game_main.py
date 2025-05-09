@@ -8,7 +8,6 @@ from time import sleep
 class Game_main:
     ins = None
     def __init__(self):
-        ## Annotated by Zhangsiyun: start
         self.game_objects = [] # List to store all game objects
         self.global_vars = {} # Dictionary to store global variables
         self.render = None # Instance of the Render class for rendering the game
@@ -103,7 +102,6 @@ class Game_main:
 
     def game(self):
         from map_manage import Map_manage
-        ## Annotated by Zhangsiyun: start
         ## import Map_manage from the file map_manage.py
         while True:
             print("before select")
@@ -155,7 +153,7 @@ class Game_main:
                 width += 1
         return width
 
-    ## Annotated by Zhang Siyun: start
+    
     def select_level(levels, locks, max_height, max_width,render):
         # Game_main.ins.level_index = 0  # Game_main.ins.level_index: the index of the game levels. Setting zero to put the arrow at the first level.
         max_height -= 2
@@ -246,8 +244,7 @@ class Game_main:
                     ## for locked level, we can not choose hence this level can't be started
                     
             ## Choosing a level of game
-    ## Annotated by Zhang Siyun: end
-    
+        
     
 
 

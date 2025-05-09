@@ -1,4 +1,3 @@
-## Annotation by Zhang Siyun
 
 from inputer import Inputer ## import Inputer class from inputer.py
 from utils import Direction,ascii_art ## import Direction & ascii_art class, from utils.py
@@ -6,7 +5,6 @@ from map_manage import Map_manage ## import Map_manage class from map_manage.py
 from game_main import Game_main ## import Game_main class from game_main.py
 import time ## import time module to control the speed of transition animation
 
-# shi boyuan
 class Game_object:
     def __init__(self):
         # every class defined like xxx(Game_object) could use these variable by self.pos, also yyy(xxx) can still use
@@ -72,15 +70,14 @@ class Player(Game_object):
         self.image = Player().image
 
 # Li yunhe (change the variable name 'Qizi' into 'Chess')
-# shi boyuan
+
+
 class Chess(Game_object):
     def __init__(self, direction: list[Direction], image):
         super().__init__() # Initialize the parent class
         self.image = image # Image representation of the chess piece
         self.dir = direction # Direction of the chess piece
 
-
-# SHI BOYUAN
 class Editor(Chess):
     def __init__(self):
         super().__init__([Direction.none], '✏️') # Initialize the parent class with no direction and an editor image
@@ -174,7 +171,7 @@ class Editor(Chess):
         except:
             pass # Handle any exceptions
 
-#shi boyuan
+
 class Sword(Chess):
     def __init__(self, direction):
         super().__init__(direction, '🤺')
@@ -196,7 +193,8 @@ class Sword(Chess):
                 if obj.killable:
                     Game_main.ins.Kill(self,obj)
 
-#shi  boyuan
+
+
 class Cannon(Chess):
     def __init__(self, direction):
         super().__init__(direction, '🥷') # Initialize the parent class with a cannon image
@@ -230,7 +228,8 @@ class Cannon(Chess):
                             break  # Break if the object is not killable
                         
                 
-# shi boyuan
+
+
 class Ghost(Chess):
     def __init__(self, direction):
         super().__init__(direction, '👹') # Initialize the parent class with a ghost image
@@ -256,7 +255,7 @@ class Ghost(Chess):
                     if obj.killable: # Check if the object is killable
                         Game_main.ins.Kill(self,obj) # Kill the object
                     break # Break if the object is not killable
-#shi boyuan
+
 class Horse(Chess):
     def __init__(self, direction):
         super().__init__(direction, '🐎')
